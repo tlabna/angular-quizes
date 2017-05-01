@@ -1,0 +1,18 @@
+<h2 id="storeHeading">{{lego_store.name}}</h2>
+<p id="brickColors">We currently carry {{lego_store.brickColors.length}} color choices!</p>
+
+<ul id="colorList">
+    <li class="row" id="color-{{color}}" ng-repeat="(color, sizeData) in lego_store.bricks">
+        <p style="margin-left: 15px;">{{color}}</p>
+        <ul>
+            <li class="col-md-3 well brick-{{size}}" ng-repeat="(size, data) in sizeData" ng-class="{'low-stock': data.quantity < 10}">
+                <p>Size: {{size}}</p>
+                <p>Quantity: {{data.quantity}}</p>
+                <p>Price: ${{data.price}}</p>
+                <p ng-if="data.quantity < 5" class="coming-soon">Coming soon!</p>
+                <button class="buyButton" ng-click="lego_store.buy(color, size)">Buy</button>
+                <button class="returnButton" ng-click="lego_store.return(color, size)">Return</button>
+            </li>
+        </ul>
+    </li>
+</ul>
